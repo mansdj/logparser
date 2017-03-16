@@ -89,7 +89,7 @@ if(isset($_POST['submit']) && isset($_FILES['log']))
 
         while (!feof($contents))
         {
-            if (fgets($contents) && !stringIsNullOrEmpty(fgets($contents)))
+            if (fgets($contents))
             {
                 if (preg_match($logLinePattern, fgets($contents), $lines))
                 {
@@ -143,7 +143,7 @@ function stringIsNullOrEmpty($string)
     if(is_string($string) || is_null($string))
         return ($string !== "0" && (empty($string) || is_null($string))) ? true : false;
     else
-        throw new Exception("Invalid data type provided, expected string");
+        throw new Exception("Invalid data type provided.  Expected string, received " . gettype($string) . " instead.");
 }
 
 /**
